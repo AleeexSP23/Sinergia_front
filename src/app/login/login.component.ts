@@ -21,9 +21,8 @@ export class LoginComponent {
       .subscribe({
         next: (response: any) => {
           console.log(response);
-
-          // Guardar token
           localStorage.setItem('token', response.message.token);
+          console.log("Login exitoso");
         },
         error: (error) => {
           console.error(error);

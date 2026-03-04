@@ -1,0 +1,25 @@
+<p>reserva works!</p>
+
+<form (ngSubmit)="onSubmit()">
+
+  <label>Fecha y hora:</label>
+  <input 
+    type="datetime-local"
+    [(ngModel)]="fecha"
+    name="fecha"
+    required
+  />
+
+  <label>Número de personas:</label>
+  <input 
+    type="number"
+    [(ngModel)]="personas"
+    name="personas"
+    min="1"
+    max="8"
+    required
+  />
+
+  <button type="submit">Reservar</button>
+
+</form>
