@@ -2,13 +2,18 @@
 
 <form (ngSubmit)="onSubmit()">
 
-  <label>Fecha y hora:</label>
-  <input 
-    type="datetime-local"
-    [(ngModel)]="fecha"
-    name="fecha"
-    required
-  />
+  <label>Fecha</label>
+<input type="date" [(ngModel)]="date" name="date" required>
+
+  <label>Hora</label>
+
+<select [(ngModel)]="hora" name="time" required>
+
+  <option *ngFor="let hora of horasDisponibles" [value]="hora">
+    {{hora}}
+  </option>
+
+</select>
 
   <label>Número de personas:</label>
   <input 

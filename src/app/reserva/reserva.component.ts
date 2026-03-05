@@ -1,28 +1,34 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReservationService } from '../services/reserva.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reserva',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './reserva.component.html',
   styleUrl: './reserva.component.css'
 })
 export class ReservaComponent {
 
-  fecha: string = '';
+  date: string= "";
+  hora: string = "";
   personas: number = 1;
+  horasDisponibles: string[] = ["14:00", "15:30", "20:00", "21:30"]
 
   private reservationService = inject(ReservationService);
 
   onSubmit() {
 
-    const data = {
-      fecha: new Date(this.fecha),
-      personas: this.personas
-    };
+    const fechaCompleta = new Date(`${this.date}T${this.hora}`);
+
+     const data = {
+    date: fechaCompleta,
+    personas: this.personas
+  };
+
+  console.log(data);
 
     this.reservationService.createReservation(data)
       .subscribe({
