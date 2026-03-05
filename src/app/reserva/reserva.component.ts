@@ -16,8 +16,26 @@ export class ReservaComponent {
   hora: string = "";
   personas: number = 1;
   horasDisponibles: string[] = ["14:00", "15:30", "20:00", "21:30"]
+  horariosOcupados:any = {};
 
   private reservationService = inject(ReservationService);
+
+    onDateChange(){
+
+    if(!this.date) return;
+
+    this.reservationService.getAvailability(this.date)
+    .subscribe({
+      next:(res)=>{
+        console.log("Disponibilidad:", res);
+        this.horariosOcupados = res.horarios;
+      },
+      error:(err)=>{
+        console.error(err);
+      }
+    });
+
+  }
 
   onSubmit() {
 
@@ -38,7 +56,9 @@ export class ReservaComponent {
         },
         error: (err) => {
           console.error(err);
-          alert('Error al crear reserva');
+          const mensaje = err.error?.message || 'Error al crear reserva';
+
+  alert(mensaje);
         }
       });
   }

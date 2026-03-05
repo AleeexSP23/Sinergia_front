@@ -3,28 +3,53 @@
 <form (ngSubmit)="onSubmit()">
 
   <label>Fecha</label>
-<input type="date" [(ngModel)]="date" name="date" required>
+  <input
+    type="date"
+    [(ngModel)]="date"
+    name="date"
+    (change)="onDateChange()"
+    required
+  >
+
+  <br><br>
 
   <label>Hora</label>
 
-<select [(ngModel)]="hora" name="time" required>
+  <select
+    [(ngModel)]="hora"
+    name="hora"
+    required
+  >
 
-  <option *ngFor="let hora of horasDisponibles" [value]="hora">
-    {{hora}}
-  </option>
+    <option
+      *ngFor="let hora of horasDisponibles"
+      [value]="hora"
+      [disabled]="horariosOcupados[hora] >= 5"
+    >
 
-</select>
+      {{hora}}
+      <span *ngIf="horariosOcupados[hora] >= 5">
+        (completo)
+      </span>
 
-  <label>Número de personas:</label>
-  <input 
+    </option>
+
+  </select>
+
+  <br><br>
+
+  <label>Personas</label>
+  <input
     type="number"
     [(ngModel)]="personas"
     name="personas"
     min="1"
-    max="8"
-    required
-  />
+  >
 
-  <button type="submit">Reservar</button>
+  <br><br>
+
+  <button type="submit">
+    Reservar
+  </button>
 
 </form>
