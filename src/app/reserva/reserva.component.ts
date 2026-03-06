@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReservationService } from '../services/reserva.service';
 import { CommonModule } from '@angular/common';
@@ -8,58 +8,71 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './reserva.component.html',
-  styleUrl: './reserva.component.css'
+  styleUrl: './reserva.component.css',
 })
-export class ReservaComponent {
-
-  date: string= "";
-  hora: string = "";
+export class ReservaComponent implements OnInit {
+  date: string = '';
+  hora: string = '';
   personas: number = 1;
-  horasDisponibles: string[] = ["14:00", "15:30", "20:00", "21:30"]
-  horariosOcupados:any = {};
+  horasDisponibles: string[] = ['14:00', '15:30', '20:00', '21:30'];
+  horariosOcupados: any = {};
+  reservas: any[] = [];
 
   private reservationService = inject(ReservationService);
 
-    onDateChange(){
+  loadReservations() {
+    this.reservationService.getReservations().subscribe({
+      next: async (res) => {
+        console.log('Reservas:', res);
+        this.reservas = res.reservations;
+        
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 
-    if(!this.date) return;
+  ngOnInit() {
+    this.loadReservations();
+  }
 
-    this.reservationService.getAvailability(this.date)
-    .subscribe({
-      next:(res)=>{
-        console.log("Disponibilidad:", res);
+  onDateChange() {
+    if (!this.date) return;
+
+    this.reservationService.getAvailability(this.date).subscribe({
+      next: (res) => {
+        console.log('Disponibilidad:', res);
         this.horariosOcupados = res.horarios;
       },
-      error:(err)=>{
+      error: (err) => {
         console.error(err);
-      }
+      },
     });
-
   }
 
   onSubmit() {
-
     const fechaCompleta = new Date(`${this.date}T${this.hora}`);
 
-     const data = {
-    date: fechaCompleta,
-    personas: this.personas
-  };
+    const data = {
+      date: fechaCompleta,
+      personas: this.personas,
+    };
 
-  console.log(data);
+    console.log(data);
 
-    this.reservationService.createReservation(data)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          alert('Reserva creada correctamente');
-        },
-        error: (err) => {
-          console.error(err);
-          const mensaje = err.error?.message || 'Error al crear reserva';
+    this.reservationService.createReservation(data).subscribe({
+      next: (res) => {
+        console.log(res);
+        alert('Reserva creada correctamente');
+        this.loadReservations();
+      },
+      error: (err) => {
+        console.error(err);
+        const mensaje = err.error?.message || 'Error al crear reserva';
 
-  alert(mensaje);
-        }
-      });
+        alert(mensaje);
+      },
+    });
   }
 }

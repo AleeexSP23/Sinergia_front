@@ -15,4 +15,12 @@ export class ReservationService {
   getAvailability(date: string) {
     return this.http.get<any>(`${this.API}/availability/${date}`);
   }
+
+  getReservations() {
+    return this.http.get<any>('http://localhost:3000/reservations', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+  }
 }
