@@ -24,7 +24,7 @@ export class ReservaComponent implements OnInit {
     this.reservationService.getReservations().subscribe({
       next: async (res) => {
         console.log('Reservas:', res);
-        this.reservas = res.reservations;
+        this.reservas = [...res.reservations];
         
       },
       error: (err) => {
@@ -34,9 +34,14 @@ export class ReservaComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  const token = localStorage.getItem('token');
+
+  if(token){
     this.loadReservations();
   }
 
+}
   onDateChange() {
     if (!this.date) return;
 

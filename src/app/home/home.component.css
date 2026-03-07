@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.letra-sinergia {
+  font-family: 'Cinzel', serif;
+  font-size: 90px;
+  letter-spacing: 12px;
+  font-weight: 500;
+  color: wheat;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 50px;
+}
+
+.hero-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+}
+
+.hero-buttons button {
+  padding: 12px 25px;
+  border: none;
+  background: #C46A2D;
+  color: white;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;             
+  transition: all 0.3s ease;  
+}
+
+.hero-buttons button:hover {
+  background: #D57D49;          
+  transform: scale(1.05);       
+}
+

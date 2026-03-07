@@ -1,0 +1,27 @@
+<section class="carta-container">
+
+  <h2>Nuestra Carta</h2>
+
+  <!-- Tabs para seleccionar carta -->
+  <div class="tabs">
+    <button [class.active]="currentTab === 'normal'" (click)="currentTab='normal'">Carta Normal</button>
+    <button [class.active]="currentTab === 'cocteles'" (click)="currentTab='cocteles'">Cócteles</button>
+  </div>
+
+  <!-- Lista de platos normal -->
+  <ul class="lista-platos" *ngIf="currentTab === 'normal'">
+    <li *ngFor="let plato of cartaNormal">
+      <span class="nombre">{{ plato.nombre }}</span>
+      <span class="descripcion">{{ plato.descripcion }}</span>
+    </li>
+  </ul>
+
+  <!-- Lista de cócteles -->
+  <ul class="lista-platos" *ngIf="currentTab === 'cocteles'">
+    <li *ngFor="let coctel of cartaCocteles">
+      <span class="nombre">{{ coctel.nombre }}</span>
+      <span class="descripcion">{{ coctel.descripcion }}</span>
+    </li>
+  </ul>
+
+</section>

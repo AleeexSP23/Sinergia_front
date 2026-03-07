@@ -1,63 +1,36 @@
-<p>reserva works!</p>
-
 <form (ngSubmit)="onSubmit()">
-
   <label>Fecha</label>
-  <input
-    type="date"
-    [(ngModel)]="date"
-    name="date"
-    (change)="onDateChange()"
-    required
-  >
+  <input type="date" [(ngModel)]="date" name="date" (change)="onDateChange()" required />
 
-  <br><br>
+  <br /><br />
 
   <label>Hora</label>
 
-  <select
-    [(ngModel)]="hora"
-    name="hora"
-    required
-  >
-
+  <select [(ngModel)]="hora" name="hora" required>
     <option
       *ngFor="let hora of horasDisponibles"
       [value]="hora"
       [disabled]="horariosOcupados[hora] >= 5"
     >
-
-      {{hora}}
-      <span *ngIf="horariosOcupados[hora] >= 5">
-        (completo)
-      </span>
-
+      {{ hora }}
+      <span *ngIf="horariosOcupados[hora] >= 5"> (completo) </span>
     </option>
-
   </select>
 
-  <br><br>
+  <br /><br />
 
   <label>Personas</label>
-  <input
-    type="number"
-    [(ngModel)]="personas"
-    name="personas"
-    min="1"
-  >
+  <input type="number" [(ngModel)]="personas" name="personas" min="1" />
 
-  <br><br>
+  <br /><br />
 
-  <button type="submit">
-    Reservar
-  </button>
-
+  <button type="submit">Reservar</button>
 </form>
 
 <h2>Reservas</h2>
 
-<div *ngFor="let r of reservas">
-  <p>Fecha: {{ r.date | date:'dd/MM/yyyy HH:mm':'GMT+1' }}</p>
+<div *ngFor="let r of reservas" class="lista-reservas">
+  <p>Fecha: {{ r.date | date: 'dd/MM/yyyy HH:mm' : 'GMT+1' }}</p>
   <p>Personas: {{ r.personas }}</p>
-  <hr>
+  <hr />
 </div>

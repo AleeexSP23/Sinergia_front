@@ -1,0 +1,80 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #81583d;
+  padding-top: 100px;
+  font-family: 'Cinzel', serif;
+  color: white;
+  box-sizing: border-box;
+}
+
+.carta-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto 80px; /* espacio inferior para el footer */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  color: #fff;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.tabs button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  color: #c46a2d;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tabs button.active,
+.tabs button:hover {
+  background: #ffd5a0;
+}
+
+/* Lista de platos */
+.lista-platos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-platos li {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lista-platos li .nombre {
+  font-weight: 600;
+  color: #ffd5a0;
+}
+
+.lista-platos li .descripcion {
+  color: #fff;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lista-platos li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
