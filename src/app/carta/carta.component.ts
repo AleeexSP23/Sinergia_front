@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface Plato {
+  nombre: string;
+  descripcion: string;
+  imagen?: string; // opcional
+}
+
 @Component({
   selector: 'app-carta',
   standalone: true,
@@ -11,33 +17,60 @@ import { CommonModule } from '@angular/common';
 export class CartaComponent {
   currentTab: 'normal' | 'cocteles' = 'normal';
 
-  cartaNormal = [
-    { nombre: 'Sopa de Pimentón', descripcion: '' },
-    { nombre: 'Esférico de Morcilla', descripcion: '' },
-    { nombre: 'Gravadlax', descripcion: '' },
-    { nombre: 'Krumpuk Codium', descripcion: '' },
-    { nombre: 'Mejillones rellenos', descripcion: '' },
-    { nombre: 'Tartaleta de Salmón', descripcion: '' },
-    { nombre: 'Verduras encurtidas', descripcion: '' },
-    { nombre: 'Guisantes y Níscalos', descripcion: '' },
-    { nombre: 'Vieiras, Pepino y Salicornia', descripcion: '' },
-    { nombre: 'Bonito en Escabeche', descripcion: '' },
-    { nombre: 'Merluza al Mole', descripcion: '' },
-    { nombre: 'Carrilleras a la Madeira', descripcion: '' },
+  // Controla cuál plato está desplegado
+  platoDesplegado: number | null = null;
+  coctelDesplegado: number | null = null;
+
+  // Toggle para platos normales
+  togglePlato(index: number) {
+    this.platoDesplegado = this.platoDesplegado === index ? null : index;
+  }
+
+  // Toggle para cócteles
+  toggleCoctel(index: number) {
+    this.coctelDesplegado = this.coctelDesplegado === index ? null : index;
+  }
+
+  // Carta normal con imagen y descripción
+  cartaNormal: Plato[] = [
+    {
+      nombre: 'Paella de Marisco',
+      descripcion: 'Deliciosa paella con gambas, mejillones y calamares.',
+      imagen: 'assets/platos/paella.jpg'
+    },
+    {
+      nombre: 'Ensalada César',
+      descripcion: 'Lechuga fresca, pollo, crutones y queso parmesano.',
+      imagen: 'assets/platos/ensalada.jpg'
+    },
+    {
+      nombre: 'Sopa de Pimentón',
+      descripcion: 'Sopa suave con un toque ahumado.',
+      imagen: 'assets/platos/sopa.jpg'
+    },
+    {
+      nombre: 'Esférico de Morcilla',
+      descripcion: 'Pequeños esféricos rellenos de morcilla con crujiente.',
+      imagen: 'assets/platos/morcilla.jpg'
+    }
   ];
 
-  cartaCocteles = [
-    { nombre: 'Mandarina + Caqui + Romero + Brandy', descripcion: '' },
-    { nombre: 'Melon + Menta + Vodka', descripcion: '' },
-    { nombre: 'Huma + Ron añejo + Romero + Carbonated Soy Syrup', descripcion: '' },
-    { nombre: 'Ginebra + Pimienta', descripcion: '' },
-    { nombre: 'Sirope de Lavanda + Ginebra', descripcion: '' },
-    { nombre: 'Roasted Paprika Juice + Wisky', descripcion: '' },
-    { nombre: 'Mezcal + Cilantro + Cordial Higo Jumbo', descripcion: '' },
-    { nombre: 'Dashi + GinRoku + Kombu Caramelizado', descripcion: '' },
-    { nombre: 'Tofee infused Vodka', descripcion: '' },
-    { nombre: 'Limoncello + Narancello + Pomelocello', descripcion: '' },
-    { nombre: 'Licor Coco + Martini + Caramelo Coco', descripcion: '' },
-    { nombre: 'Licor Coco + Martini + Caramelo Coco', descripcion: '' },
+  // Carta de cócteles con imagen y descripción
+  cartaCocteles: Plato[] = [
+    {
+      nombre: 'Mojito',
+      descripcion: 'Refrescante mojito con hierbabuena y lima.',
+      imagen: 'assets/cocteles/mojito.jpg'
+    },
+    {
+      nombre: 'Melon + Menta + Vodka',
+      descripcion: 'Cóctel afrutado y fresco ideal para verano.',
+      imagen: 'assets/cocteles/melon.jpg'
+    },
+    {
+      nombre: 'Ginebra + Pimienta',
+      descripcion: 'Cóctel aromático con un toque picante.',
+      imagen: 'assets/cocteles/ginebra.jpg'
+    }
   ];
 }

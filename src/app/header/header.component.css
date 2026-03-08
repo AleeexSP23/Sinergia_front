@@ -16,37 +16,49 @@
   z-index:1000;
 }
 
+.logo-2{
+  max-width: 100px;
+  
+}
+
 .header.scrolled{
   background:rgb(67, 42, 14);
 }
 
-.container{
-  width:90%;
-  max-width:1200px;
-
-  margin:auto;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* los items se alinean al inicio */
+  position: relative; /* para centrar nav */
+  gap: 20px;
+  padding: 0 20px; /* opcional: espacio lateral */
 }
 
-.logo {
+.brand {
     font-family: 'Cinzel', serif;
   font-size: 20px;
   letter-spacing: 12px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espacio entre el logo y el texto */
   
 }
 
-.logo a {
+.brand a {
   text-decoration: none;
   color: wheat;
 }
 
-.nav{
-  display:flex;
-  gap:40px;
+.nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
 }
 
 .nav a {
@@ -75,9 +87,10 @@
   width: 100%; /* subrayado animado */
 }
 
-.auth{
-  display:flex;
-  gap:15px;
+.auth {
+  margin-left: auto; /* empuja los botones al final */
+  display: flex;
+  gap: 15px;
 }
 
 .login {

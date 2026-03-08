@@ -1,8 +1,7 @@
 <header class="header" [class.scrolled]="isScrolled">
-
   <div class="container">
-
-    <div class="logo">
+    <div class="brand">
+      <img src="LogoSF.png" alt="" class="logo-2" />
       <a routerLink="/">SINERGIA</a>
     </div>
 
@@ -17,7 +16,5 @@
       <button *ngIf="!isLogged()" routerLink="/register" class="register">Registro</button>
       <button *ngIf="isLogged()" (click)="logout()" class="register">Log Out</button>
     </div>
-
   </div>
-
 </header>
