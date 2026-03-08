@@ -29,14 +29,14 @@ export class CartaComponent {
   cartaCocteles = [
     { nombre: 'Mandarina + Caqui + Romero + Brandy', descripcion: '' },
     { nombre: 'Melon + Menta + Vodka', descripcion: '' },
-    { nombre: '', descripcion: '' },
+    { nombre: 'Huma + Ron añejo + Romero + Carbonated Soy Syrup', descripcion: '' },
     { nombre: 'Ginebra + Pimienta', descripcion: '' },
     { nombre: 'Sirope de Lavanda + Ginebra', descripcion: '' },
-    { nombre: '', descripcion: '' },
-    { nombre: '', descripcion: '' },
-    { nombre: '', descripcion: '' },
-    { nombre: '', descripcion: '' },
-    { nombre: '', descripcion: '' },
-    { nombre: '', descripcion: '' },
+    { nombre: 'Roasted Paprika Juice + Wisky', descripcion: '' },
+    { nombre: 'Mezcal + Cilantro + Cordial Higo Jumbo', descripcion: '' },
+    { nombre: 'Dashi + GinRoku + Kombu Caramelizado', descripcion: '' },
+    { nombre: 'Tofee infused Vodka', descripcion: '' },
+    { nombre: 'Limoncello + Narancello + Pomelocello', descripcion: '' },
+    { nombre: 'Licor Coco + Martini + Caramelo Coco', descripcion: '' },
   ];
 }

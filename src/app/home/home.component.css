@@ -20,7 +20,7 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 90px;
   letter-spacing: 12px;
-  font-weight: 500;
+  font-weight: 525;
   color: wheat;
 }
 
@@ -55,8 +55,8 @@ body {
 
 .hero-buttons button {
   padding: 12px 25px;
-  border: none;
-  background: #C46A2D;
+  border: 2px solid rgba(255, 255, 255, 0.669);
+  background: #c4692dc0;
   color: white;
   border-radius: 25px;
   font-size: 16px;

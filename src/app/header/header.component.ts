@@ -8,12 +8,25 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
+  
 })
 export class HeaderComponent {
 
   isScrolled = false;
 
+ 
   @HostListener('window:scroll', [])
+
+  isLogged(): boolean {
+  return !!localStorage.getItem('token');
+}
+
+logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('role');
+  alert("Log out exitoso")
+}
+
   onScroll(){
 
     if(window.scrollY > 50){

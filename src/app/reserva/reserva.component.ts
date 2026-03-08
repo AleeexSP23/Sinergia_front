@@ -2,11 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReservationService } from '../services/reserva.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-reserva',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './reserva.component.html',
   styleUrl: './reserva.component.css',
 })
@@ -20,6 +21,15 @@ export class ReservaComponent implements OnInit {
 
   private reservationService = inject(ReservationService);
 
+  isLogged(): boolean {
+  return !!localStorage.getItem('token');
+}
+
+isAdmin(): boolean {
+  return localStorage.getItem('role') === 'admin';
+}
+
+
   loadReservations() {
     this.reservationService.getReservations().subscribe({
       next: async (res) => {
@@ -32,6 +42,21 @@ export class ReservaComponent implements OnInit {
       },
     });
   }
+
+  eliminarReserva(id: string) {
+  if (!confirm("¿Seguro que quieres eliminar esta reserva?")) return;
+
+  this.reservationService.deleteReserva(id).subscribe({
+    next: () => {
+      this.reservas = this.reservas.filter(r => r._id !== id);
+      alert("Reserva eliminada correctamente");
+    },
+    error: (err) => {
+      console.error(err);
+      alert("Error al eliminar la reserva");
+    }
+  });
+}
 
   ngOnInit() {
 
@@ -65,6 +90,11 @@ export class ReservaComponent implements OnInit {
     };
 
     console.log(data);
+
+     if (!this.isLogged()) {
+    alert("Debes iniciar sesión para hacer una reserva");
+    return;
+  }
 
     this.reservationService.createReservation(data).subscribe({
       next: (res) => {

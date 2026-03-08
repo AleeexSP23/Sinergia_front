@@ -9,12 +9,12 @@ export class ReservationService {
   private API = 'http://localhost:3000/reservations';
 
   createReservation(data: any) {
-  return this.http.post(this.API, data, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  });
-}
+    return this.http.post(this.API, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+  }
 
   getAvailability(date: string) {
     return this.http.get<any>(`${this.API}/availability/${date}`);
@@ -27,4 +27,10 @@ export class ReservationService {
       },
     });
   }
+
+  deleteReserva(id: string) {
+  return this.http.delete(`${this.API}/${id}`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+  });
+}
 }

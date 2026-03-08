@@ -13,8 +13,9 @@
     </nav>
 
     <div class="auth">
-      <button routerLink="/login" class="login">Login</button>
-      <button routerLink="/register" class="register">Registro</button>
+      <button *ngIf="!isLogged()" routerLink="/login" class="login">Login</button>
+      <button *ngIf="!isLogged()" routerLink="/register" class="register">Registro</button>
+      <button *ngIf="isLogged()" (click)="logout()" class="register">Log Out</button>
     </div>
 
   </div>
