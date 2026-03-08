@@ -2,7 +2,7 @@
 
   <h2>Nuestra Carta</h2>
 
-  <!-- Tabs para seleccionar carta -->
+  <!-- Tabs -->
   <div class="tabs">
     <button [class.active]="currentTab === 'normal'" (click)="currentTab='normal'">Carta Normal</button>
     <button [class.active]="currentTab === 'cocteles'" (click)="currentTab='cocteles'">Cócteles</button>
@@ -10,17 +10,26 @@
 
   <!-- Lista de platos normal -->
   <ul class="lista-platos" *ngIf="currentTab === 'normal'">
-    <li *ngFor="let plato of cartaNormal">
+    <li *ngFor="let plato of cartaNormal; let i = index" (click)="togglePlato(i)">
       <span class="nombre">{{ plato.nombre }}</span>
-      <span class="descripcion">{{ plato.descripcion }}</span>
+
+      <!-- Contenido desplegable -->
+      <div class="detalle" [class.open]="platoDesplegado === i">
+        <p>{{ plato.descripcion }}</p>
+        <img *ngIf="plato.imagen" [src]="plato.imagen" alt="{{ plato.nombre }}">
+      </div>
     </li>
   </ul>
 
   <!-- Lista de cócteles -->
   <ul class="lista-platos" *ngIf="currentTab === 'cocteles'">
-    <li *ngFor="let coctel of cartaCocteles">
+    <li *ngFor="let coctel of cartaCocteles; let i = index" (click)="toggleCoctel(i)">
       <span class="nombre">{{ coctel.nombre }}</span>
-      <span class="descripcion">{{ coctel.descripcion }}</span>
+
+      <div class="detalle" [class.open]="coctelDesplegado === i">
+        <p>{{ coctel.descripcion }}</p>
+        <img *ngIf="coctel.imagen" [src]="coctel.imagen" alt="{{ coctel.nombre }}">
+      </div>
     </li>
   </ul>
 
