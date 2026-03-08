@@ -31,8 +31,8 @@
 <h2>Reservas</h2>
 
 <div *ngFor="let r of reservas" class="lista-reservas">
+  <button *ngIf="isAdmin()" (click)="eliminarReserva(r._id)" class="btn-eliminar">Eliminar</button>
   <p>Fecha: {{ r.date | date: 'dd/MM/yyyy HH:mm' : 'GMT+1' }}</p>
   <p>Personas: {{ r.personas }}</p>
-  <button *ngIf="isAdmin()" (click)="eliminarReserva(r._id)">Eliminar</button>
   <hr />
 </div>

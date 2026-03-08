@@ -38,5 +38,6 @@ export class CartaComponent {
     { nombre: 'Tofee infused Vodka', descripcion: '' },
     { nombre: 'Limoncello + Narancello + Pomelocello', descripcion: '' },
     { nombre: 'Licor Coco + Martini + Caramelo Coco', descripcion: '' },
+    { nombre: 'Licor Coco + Martini + Caramelo Coco', descripcion: '' },
   ];
 }

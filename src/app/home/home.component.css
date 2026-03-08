@@ -21,7 +21,21 @@ body {
   font-size: 90px;
   letter-spacing: 12px;
   font-weight: 525;
-  color: wheat;
+  background: linear-gradient(270deg, #FFD700, #FFA500, #FFF8DC); /* degradado dorado */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.letra-s {
+  font-family: 'Great Vibes', cursive; /* tipografía victoriana elegante */
+  font-size: 130px; 
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FFF8DC); /* degradado dorado */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 .hero-overlay {

@@ -1,28 +1,51 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: #81583d;
-  padding-top: 100px;
+/* Contenedor principal */
+.carta-container {
+  padding: 50px 20px;
   font-family: 'Cinzel', serif;
   color: white;
+  background: 
+    url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/5d/8c/d0/restaurante.jpg?w=1000&h=-1&s=1') center/ cover no-repeat,
+    url('https://i.pinimg.com/736x/cc/5b/72/cc5b72d35fb9fcedf7a3ecf6dc3bd814.jpg') center center / cover no-repeat;
+  background-blend-mode: overlay;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
 }
 
-.carta-container {
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto 80px; /* espacio inferior para el footer */
+/* Overlay difuminado para los laterales */
+.carta-container::before {
+  content: '';
+  position: absolute;
+  top:0; left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  z-index: 0;
 }
 
-h2 {
+/* Contenido centrado */
+.carta-container h2,
+.tabs,
+.lista-platos {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Título */
+.carta-container h2 {
   text-align: center;
+  font-size: 36px;
   margin-bottom: 30px;
-  font-size: 32px;
   color: #fff;
 }
 
-/* Tabs */
+/* Tabs de selección */
 .tabs {
   display: flex;
   justify-content: center;
@@ -31,50 +54,65 @@ h2 {
 }
 
 .tabs button {
-  padding: 10px 25px;
+  background: #c46a2d;
   border: none;
+  color: white;
+  padding: 10px 25px;
   border-radius: 25px;
-  background: #fff;
-  color: #c46a2d;
-  cursor: pointer;
   font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.tabs button.active,
-.tabs button:hover {
+.tabs button:hover,
+.tabs button.active {
   background: #ffd5a0;
+  color: #c46a2d;
+  transform: scale(1.05);
 }
 
 /* Lista de platos */
 .lista-platos {
   list-style: none;
-  padding: 0;
+  padding: 0 20px;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .lista-platos li {
-  padding: 12px 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  padding: 10px 15px;
+  background: rgba(128, 83, 31, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .lista-platos li .nombre {
+  font-size: 20px;
   font-weight: 600;
-  color: #ffd5a0;
 }
 
 .lista-platos li .descripcion {
-  color: #fff;
-  font-style: italic;
+  font-size: 16px;
+  margin-top: 3px;
+  color: #f5f5f5;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .lista-platos li {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 8px 12px;
+  }
+
+  .tabs button {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+
+  .carta-container h2 {
+    font-size: 28px;
   }
 }
