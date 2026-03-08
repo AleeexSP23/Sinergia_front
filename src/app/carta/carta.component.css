@@ -1,5 +1,3 @@
-/* Contenedor principal */
-/* Contenedor principal */
 .carta-container {
   padding: 70px 20px;
   font-family: 'Cinzel', serif;
@@ -167,4 +165,21 @@
 /* Descripción solo para fallback, ahora está en .detalle p */
 .lista-platos li .descripcion {
   display: none;
+}
+
+.titulo-plato {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* flecha */
+.flecha {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+/* cuando está desplegado rota */
+.flecha.abierta {
+  transform: rotate(180deg);
 }
